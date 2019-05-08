@@ -11,16 +11,39 @@
 
 // Principle 1
 
-// code example for Window Binding
+function showThis() {
+    console.log(this);
+  }
+  
+showThis();
 
 // Principle 2
 
-// code example for Implicit Binding
+const pirateJack = {
+    name: "Jack",
+    expiriance: 24,
+    saySomething() {
+        console.log(`Yaar! My name is ${this.name} and I've been a pirate on these seas for ${this.expiriance} years!`)
+    }
+}
+
+pirateJack.saySomething();
 
 // Principle 3
 
-// code example for New Binding
+function Pirate(name, expiriance) {
+    this.name = name;
+    this.expiriance = expiriance;
+    this.saySomething = function () {
+        console.log(`Yaar! My name is ${this.name} and I've been a pirate on these seas for ${this.expiriance} years!`)
+    }
+}
+
+const pirateDrake = new Pirate("Drake", 12);
+
+pirateDrake.saySomething();
 
 // Principle 4
 
-// code example for Explicit Binding
+const pirateSays = pirateDrake.saySomething;
+pirateSays.call(pirateDrake);
